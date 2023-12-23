@@ -28,11 +28,17 @@ define("ADMINPASS", "123123");
 if (!empty($_POST['password'])) {
   if ($_POST['password'] === ADMINPASS) {
     $_SESSION['access'] = true;
+    setcookie('access', 'admin', time() + 3600 * 3, '/');
     $_SESSION['errors'] = "You are authorized";
   } else {
 
     $_SESSION['errors'] = 'Wrong password';
   }
+}
+
+if (!empty($_COOKIE['acsess'])) {
+  $_SESSION['access'] = true;
+  $_SESSION['errors'] = "You're authorized";
 }
 
 
